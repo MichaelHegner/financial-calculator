@@ -26,7 +26,7 @@ class AnnuityCalculator {
 	 * @return the interest to pay in the given year.
 	 */
 	static double calculateInterestAfterYear(double captial, double interest, int time, int timeN) {
-		if(time > timeN) throw new IllegalArgumentException("tn must be greater or equal t.");
+		// if(time > timeN) throw new IllegalArgumentException("tn must be greater or equal t.");
 		def q = 1 + (interest / 100); // TODO: Use Basic Calculator
 		def qn = BasicCalculator.accumulationFactorByYearsAndInterest(timeN + 1, interest)
 		def qt = BasicCalculator.accumulationFactorByYearsAndInterest(time, interest)
@@ -76,7 +76,7 @@ class AnnuityCalculator {
 	}
 	
 	/**
-	 * Calculates the annuity (german: Annuität) as amount in the year.
+	 * Calculates the annuity (german: Annuitï¿½t) as amount in the year.
 	 * @param captial as e.g. loan
 	 * @param iterest in % (e.g. 4% interest)
 	 * @param redemption in % (e.g. 4% redemption)
