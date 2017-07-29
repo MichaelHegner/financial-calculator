@@ -25,7 +25,8 @@ class AnnuityCalculator {
 	 * @param z as percent like 2.2%
 	 * @return the interest to pay in the given year.
 	 */
-	static double calculateInterestAfterYear(double captial, int time, double timeN, double interest) {
+	static double calculateInterestAfterYear(double captial, double interest, int time, int timeN) {
+		if(time > timeN) throw new IllegalArgumentException("tn must be greater or equal t.");
 		def q = 1 + (interest / 100); // TODO: Use Basic Calculator
 		def qn = BasicCalculator.accumulationFactorByYearsAndInterest(timeN + 1, interest)
 		def qt = BasicCalculator.accumulationFactorByYearsAndInterest(time, interest)
