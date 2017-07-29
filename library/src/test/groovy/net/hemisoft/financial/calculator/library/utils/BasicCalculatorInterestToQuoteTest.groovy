@@ -10,11 +10,10 @@ import org.junit.runners.Parameterized.Parameters
 
 @RunWith(Parameterized.class)
 class BasicCalculatorInterestToQuoteTest {
-	double interest;
-	double expected;
+	def interest, expected
 	
 	
-	public BasicCalculatorInterestToQuoteTest(double interest, double expected) {
+	public BasicCalculatorInterestToQuoteTest(interest, expected) {
 		this.interest = interest
 		this.expected = expected
 	}
@@ -29,11 +28,8 @@ class BasicCalculatorInterestToQuoteTest {
 		]*.toArray()
 	}
 
-	
 	@Test
 	public void testInterestToQuote() {
-		double interest = BasicCalculator.interestToQuote(interest)
-		assertThat(interest).isEqualTo(expected);
+		assertThat(BasicCalculator.interestToQuote(interest)).isEqualTo(expected);
 	}
-
 }

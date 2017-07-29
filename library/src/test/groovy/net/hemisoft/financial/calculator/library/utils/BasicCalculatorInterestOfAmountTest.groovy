@@ -1,5 +1,7 @@
 package net.hemisoft.financial.calculator.library.utils
 
+import static org.assertj.core.api.Assertions.assertThat
+import static org.assertj.core.api.Assertions.offset
 import static org.junit.Assert.*
 
 import org.assertj.core.api.Assertions
@@ -10,12 +12,10 @@ import org.junit.runners.Parameterized.Parameters
 
 @RunWith(Parameterized.class)
 class BasicCalculatorInterestOfAmountTest {
-	double capital
-	double interest
-	double expected
+	def capital, interest, expected
 	
 	
-	public BasicCalculatorInterestOfAmountTest(double capital, double interest, double expected) {
+	public BasicCalculatorInterestOfAmountTest(capital, interest, expected) {
 		this.capital = capital
 		this.interest = interest
 		this.expected = expected
@@ -55,8 +55,8 @@ class BasicCalculatorInterestOfAmountTest {
 	
 	@Test
 	public void testInterestOfAmount() {
-		double result = BasicCalculator.calculateInterestOfAmount(capital, interest)
-		Assertions.assertThat(result).isCloseTo(expected, Assertions.offset(0.001d))
+		def result = BasicCalculator.calculateInterestOfAmount(capital, interest)
+		assertThat(result).isCloseTo(expected, offset(0.001d))
 	}
 
 }
