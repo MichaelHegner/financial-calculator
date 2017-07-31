@@ -55,7 +55,7 @@ class DeprecationCalculatorLinearDeprecationByInterestTest {
 	
 	@Test
 	public void testInterestOfAmount() {
-		def result = DeprecationCalculator.linearDeprecationByInterest(capital, interest)
+		def result = DeprecationCalculator.calculateLinearDeprecationByInterest(capital, interest)
 		assertThat(result).isCloseTo(expected, offset(0.001d))
 	}
 
