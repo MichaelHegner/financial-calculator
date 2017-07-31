@@ -37,6 +37,15 @@ class BasicCalculator {
 	}
 	
 	/**
+	 * Calculates the Inverse of given interest => the year
+	 * @param interest reducing the capital
+	 * @return the reverse if interest
+	 */
+	static double calculateInverse(double interest) {
+		1 / interestToQuote(interest)
+	}
+	
+	/**
 	 * Converts a value as quote, e.g. 20 (%) to 0.2
 	 * @param interest
 	 * @return
