@@ -19,15 +19,13 @@ class DeprecationPlanTest {
 		def yearToday = LocalDate.now().year
 		def capital = 100_000, interest = 20;
 		def plan = DeprecationPlan.generateLinearDeprecationPlanByInterest(capital, interest)
-		println(plan)
 		
 		def expectedSize = 5
 		def deprecation = DeprecationCalculator.calculateLinearDeprecationByInterest(capital, interest)
 		assert plan.size() == expectedSize
 		0.upto(expectedSize - 1, { 
 			def mapYear = yearToday + it
-			assert plan.containsKey(mapYear)
-			def planOfMapYear = plan.get(mapYear)
+			def planOfMapYear = plan.get(it)
 			
 			assert planOfMapYear.YEAR == mapYear
 			assert planOfMapYear.DECLINING_BALANCE_BEGIN_OF_YEAR == capital - deprecation * it 
