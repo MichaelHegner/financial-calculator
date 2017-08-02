@@ -10,22 +10,23 @@ class DeprecationPlan {
 	static final String DEPRECATION = "DEPRECATION"
 	static final String DECLINING_BALANCE_END_OF_YEAR = "DECLINING_BALANCE_END_OF_YEAR"
 	
-	static Map<Integer, Map<String, Double>> generateLinearDeprecationPlanByInterest(double capital, double interest) {
+	static def generateLinearDeprecationPlanByInterest(double capital, double interest) {
 		int timeN = BasicCalculator.calculateInverse(interest)
 		def deprecation = DeprecationCalculator.calculateLinearDeprecationByInterest(capital, interest)
 		
-		Map<Integer, Map<String, Double>> resultMap = new HashMap<>()
+		def resultMap = []
 		for (int timeCounter = 0; timeCounter < timeN; timeCounter++) {
 			def balanceAtBegin = DeprecationCalculator.calculateLinearDecliningBalanceAtBeginOfYear(capital, timeCounter, timeN)
 			def balanceAtEnd = DeprecationCalculator.calculateLinearDecliningBalanceAtEndOfYear(capital, timeCounter, timeN)
 			
 			def deprecationRow = [:]
-			deprecationRow.YEAR = timeCounter + LocalDate.now().year
+			def currentYear = timeCounter + LocalDate.now().year
+			deprecationRow.YEAR = currentYear
 			deprecationRow.DECLINING_BALANCE_BEGIN_OF_YEAR = balanceAtBegin
 			deprecationRow.DEPRECATION =deprecation
 			deprecationRow.DECLINING_BALANCE_END_OF_YEAR = balanceAtEnd
 			
-			resultMap.put(timeCounter + LocalDate.now().year, deprecationRow)
+			resultMap.add(deprecationRow)
 		}
 		
 		resultMap
