@@ -1,9 +1,8 @@
-package net.hemisoft.financial.calculator.web
+package net.hemisoft.financial.calculator
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
-import net.hemisoft.financial.calculator.web.FinancialWebApplication
 
 @SpringBootApplication
 class FinancialWebApplication {
