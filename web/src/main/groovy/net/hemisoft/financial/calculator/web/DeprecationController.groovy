@@ -50,7 +50,7 @@ class DeprecationController {
 		model.put("deprecations", db.values())
 		model.put("deprecation", deprecation)
 		model.put("plan", service.calculatePlan(deprecation))
-		new ModelAndView("deprecation/view", model)
+		new ModelAndView("deprecation/list", model)
 	}
 
 	@GetMapping(params = "form")

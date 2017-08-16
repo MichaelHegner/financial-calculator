@@ -1,28 +1,27 @@
-layout 'layout.tpl', title: 'Deprecations : Create',
-  	content: contents {
-		div (class:'container') {
-      	
-      		form (id:'deprecationForm', action:'/', method:'post') {
-      	
-      			if (formErrors) {
-          			div(class:'alert alert-error') {
-            			formErrors.each { error -> p error.defaultMessage }
-          			}
-        		}
-        
-        		div (class:'pull-right') {
-          			a(href:'/', 'Deprecations')
-        		}
-        
+layout 'layout.tpl', title: 'Deprecations : Create', content: contents {
+	div (class:'container') {
+  	
+  		form (id:'deprecationForm', action:'/', method:'post') {
+  	
+  			if (formErrors) {
+      			div(class:'alert alert-danger') {
+        			formErrors.each { error -> p error.defaultMessage }
+      			}
+    		}
+    
+    		div(class:fieldErrors?.capital ? 'form-group has-error' : 'form-group') {
         		label (for:'capital', 'Capital')
-        		input (name:'capital', type:'number', value:deprecation.capital?:'', class:fieldErrors?.capital ? 'field-error' : 'none')
-        
+        		input (name:'capital', type:'number', value:deprecation.capital?:'', class:'form-control')
+    		}
+    		
+    		div(class:fieldErrors?.interest ? 'form-group has-error' : 'form-group') {
         		label (for:'interest', 'Interest')
-        		input (name:'interest', type:'number', value:deprecation.interest?:'', class:fieldErrors?.interest ? 'field-error' : 'none')     
-        
-        		div (class:'form-actions') {
+        		input (name:'interest', type:'number', value:deprecation.interest?:'', class:'form-control')     
+    		}
+
+    		div (class:'form-actions') {
           		input (type:'submit', value:'Create')
         	}
-      	}
-    }
+  		}
+	}
 }
