@@ -38,16 +38,18 @@ class DeprecationController {
 	}
 	
 	@GetMapping
-	public String view(ModelMap model) {
-		model.put("deprecations", db.values())
-		"deprecation/list";
+	public ModelAndView view() {
+		new ModelAndView("deprecation/list", "deprecations", db.values())
 	}
 
 	@GetMapping("/{id}")
 	public ModelAndView view(@PathVariable("id") Long id) {
+		def deprecation = db.get(id)
+		
 		ModelMap model = new ModelMap()
 		model.put("deprecations", db.values())
-		model.put("deprecation", db.get(id))
+		model.put("deprecation", deprecation)
+		model.put("plan", service.calculatePlan(deprecation))
 		new ModelAndView("deprecation/view", model)
 	}
 
