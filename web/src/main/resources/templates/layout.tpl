@@ -9,23 +9,29 @@ html
 	{
 		div(class:'container') 
 		{
-	    	div(class:'navbar') 
+	    	nav(class:'navbar navbar-default') 
 	    	{
-	        	div(class:'navbar-inner') 
-	        	{
-	          		a(class:'brand', href:'http://beta.groovy-lang.org/docs/groovy-2.3.0/html/documentation/markup-template-engine.html') 
-	          		{
-	              			yield 'Groovy - Layout'
-	          		}
-	          		
-	          		ul(class:'nav') 
-	          		{
-	            		li 
-	            		{
-	              			a(href:'/') { yield 'Deprecations' }
-	            		}
-	          		}
-	    		}
+	    		div(class:'container-fluid')
+	    		{
+		        	div(class:'navbar-header') 
+		        	{
+		          		a(class:'navbar-brand', href:'http://beta.groovy-lang.org/docs/groovy-2.3.0/html/documentation/markup-template-engine.html') 
+		          		{
+		              			yield 'Groovy - Layout'
+		          		}
+		          	}
+		    	
+			    	div(class:'collapse navbar-collapse')
+			    	{
+			    		ul(class:'nav navbar-nav') 
+			    		{
+			    			li
+			    			{
+				          		a(href:'/') { yield 'Deprecations' }
+			    			}
+			          	}
+			    	}
+		    	}
 	    	}
 	    
 	    	h1(title)
