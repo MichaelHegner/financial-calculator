@@ -45,7 +45,6 @@ class DeprecationController {
 	@GetMapping("/{id}")
 	public ModelAndView view(@PathVariable("id") Long id) {
 		def deprecation = db.get(id)
-		
 		ModelMap model = new ModelMap()
 		model.put("deprecations", db.values())
 		model.put("deprecation", deprecation)

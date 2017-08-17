@@ -7,7 +7,7 @@ content: contents {
         	a(href:'/?form', 'Create Deprecation')
       	}
    
-      
+      	/* LIST COMPONENT */
       	table(class:'table table-bordered table-striped') {
         	thead {
           		tr {
@@ -35,9 +35,9 @@ content: contents {
           		}
         	}
     	}
-    	
+
+		/* DETAIL COMPONENT */    	
     	if(null != deprecation) {
-	      		      	
 	      	div(class:'panel panel-default') {
 	      		div(class:'panel-heading', 'Selected Deprecation')
 	      		div(class:'panel-body') {
@@ -56,6 +56,31 @@ content: contents {
 			      	}
 		      	}
 	      	}
+		}
+		
+		
+		/* DEPRECATON PLAN */
+		if(null != plan) {
+			table(class:'table table-bordered table-striped') {
+	        	thead {
+	          		tr {
+	            		td 'Year'
+	            		td 'Declining Balance Begin Of Year'
+	            		td 'Deprecation'
+	            		td 'Declining Balance End Of Year'
+	          		}
+	        	}
+	        	tbody {
+	          		plan.each { deprecation ->
+	            		tr { 
+	              			td deprecation.YEAR
+	              			td "${deprecation.DECLINING_BALANCE_BEGIN_OF_YEAR}"
+	              			td "${deprecation.DEPRECATION}"
+	              			td "${deprecation.DECLINING_BALANCE_END_OF_YEAR}"
+	            		}
+	          		}
+	        	}
+	    	}
 		}
 	}
 }
