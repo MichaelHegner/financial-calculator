@@ -2,13 +2,12 @@ layout 'layout.tpl', title: 'Deprecations : View all',
 	
 content: contents {
 	div(class:'container') {
-	
+
     	div(class:'pull-right') {
         	a(href:'/?form', 'Create Deprecation')
       	}
-   
       	/* LIST COMPONENT */
-      	table(class:'table table-bordered table-striped') {
+     	table(class:'table table-bordered table-striped') {
         	thead {
           		tr {
             		td 'ID'
@@ -58,7 +57,6 @@ content: contents {
 	      	}
 		}
 		
-		
 		/* DEPRECATON PLAN */
 		if(null != plan) {
 			table(class:'table table-bordered table-striped') {
@@ -81,6 +79,10 @@ content: contents {
 	          		}
 	        	}
 	    	}
+	    	
+			div(id:'chartdiv'){}
 		}
+		
+		
 	}
 }
