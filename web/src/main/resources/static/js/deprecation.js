@@ -6,6 +6,7 @@ $( document ).ready(function() {
 				    	"url": "http://localhost:8080/api/" + getDeprecationId()
 				    },
 				    "theme": "none",
+				    "marginTop": 60,
 				    "marginRight": 40,
 				    "marginLeft": 40,
 				    "autoMarginOffset": 20,
@@ -19,7 +20,8 @@ $( document ).ready(function() {
 				    }],
 				    "balloon": {
 				        "borderThickness": 1,
-				        "shadowAlpha": 0
+				        "shadowAlpha": 0,
+				        "fixedPosition": true
 				    },
 				    "graphs": [{
 				        "id": "g1",
