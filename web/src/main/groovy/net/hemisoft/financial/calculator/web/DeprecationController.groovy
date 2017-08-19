@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import net.hemisoft.financial.calculator.service.DeprecationService
 
 @Controller
-@RequestMapping
+@RequestMapping("app")
 class DeprecationController {
 	final AtomicLong idGenerator = new AtomicLong(0)
 	final def db = [:]
@@ -65,7 +65,7 @@ class DeprecationController {
 			mav.addObject("fieldErrors", getFieldErrors(result));
 			mav;
 		} else {
-			new ModelAndView("redirect:/{deprecation.id}", "deprecation.id", save(deprecation).id)
+			new ModelAndView("redirect:/app/{deprecation.id}", "deprecation.id", save(deprecation).id)
 		}
 	}
 

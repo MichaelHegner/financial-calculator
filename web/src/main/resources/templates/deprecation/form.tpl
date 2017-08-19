@@ -1,7 +1,7 @@
 layout 'layout.tpl', title: 'Deprecations : Create', content: contents {
 	div (class:'container') {
   	
-  		form (id:'deprecationForm', action:'/', method:'post') {
+  		form (id:'deprecationForm', action:'/app/', method:'post') {
   	
   			if (formErrors) {
       			div(class:'alert alert-danger') {

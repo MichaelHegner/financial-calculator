@@ -37,7 +37,7 @@ html
 			    		{
 			    			li
 			    			{
-				          		a(href:'/') { yield 'Deprecations' }
+				          		a(href:'/app/') { yield 'Deprecations' }
 			    			}
 			          	}
 			    	}

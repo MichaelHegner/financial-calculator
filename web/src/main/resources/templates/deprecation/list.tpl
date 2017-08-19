@@ -4,7 +4,7 @@ content: contents {
 	div(class:'container') {
 
     	div(class:'pull-right') {
-        	a(href:'/?form', 'Create Deprecation')
+        	a(href:'/app/?form', 'Create Deprecation')
       	}
       	/* LIST COMPONENT */
      	table(class:'table table-bordered table-striped') {
@@ -29,7 +29,7 @@ content: contents {
               			td "${deprecation.capital}"
               			td "${deprecation.interest}"
               			td "${deprecation.created}"
-              			td { a(href:"/$deprecation.id", class:'btn btn-default', 'Select') } 
+              			td { a(href:"/app/$deprecation.id", class:'btn btn-default', 'Select') } 
             		}
           		}
         	}
