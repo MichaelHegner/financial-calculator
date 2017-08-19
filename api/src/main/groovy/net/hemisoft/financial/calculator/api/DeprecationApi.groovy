@@ -12,7 +12,7 @@ class DeprecationApi {
 
 	@GetMapping("/deprecation/capital/{capital}/interest/{interest}")
 	public def deprecation(@PathVariable double capital, @PathVariable double interest) {
-		return DeprecationPlan.generateLinearDeprecationPlanByInterest(120000d, 5d);
+		return DeprecationPlan.generateLinearDeprecationPlanByInterest(capital, interest);
 	} 
 	
 }
