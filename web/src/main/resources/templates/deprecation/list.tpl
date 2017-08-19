@@ -83,6 +83,7 @@ content: contents {
 	    	div(class:'panel panel-default') {
 	      		div(class:'panel-heading', 'Deprecation Chart')
 	      		div(class:'panel-body') {
+	      			input(id:"deprecationId", type:"hidden", value:"$deprecation.id")
 					div(id:'chartdiv'){}
 				}
 			}

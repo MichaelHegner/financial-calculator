@@ -3,7 +3,7 @@ $( document ).ready(function() {
 				var chart = AmCharts.makeChart("chartdiv", {
 				    "type": "serial",
 				    "dataLoader": {
-				    	"url": "http://localhost:8080/api"
+				    	"url": "http://localhost:8080/api/" + getDeprecationId()
 				    },
 				    "theme": "none",
 				    "marginRight": 40,
@@ -88,12 +88,8 @@ $( document ).ready(function() {
 				    chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
 				}
 				
-//				function setDataSet(dataset_url) {
-//					  AmCharts.loadFile(dataset_url, {}, function(data) {
-//						  chart.dataProvider = AmCharts.parseJSON(data);
-//						  chart.validateData();
-//					  });
-//				}
+				function getDeprecationId() {
+					return $("#deprecationId").val();
+				}
 				
-//				setDataSet("http://localhost:8080/api");
 			});

@@ -1,6 +1,7 @@
 package net.hemisoft.financial.calculator.web
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -17,13 +18,12 @@ class DeprecationApi {
 		this.service = service;
 	}
 
-	@RequestMapping
-	def deprecationChart() {
+	@RequestMapping("/{id}")
+	def deprecationChart(@PathVariable long id) {
 		def returnList = []
-		def deprecationIterator = service.findAll().iterator()
+		Deprecation d = service.findOne(id)
 
-		if(deprecationIterator.hasNext()) {
-			Deprecation d = deprecationIterator.next()
+		if(null != d) {
 			def plan = service.calculatePlan(d)
 			
 			plan.each{ value ->
