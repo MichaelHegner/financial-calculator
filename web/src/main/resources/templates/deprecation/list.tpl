@@ -80,9 +80,12 @@ content: contents {
 	        	}
 	    	}
 	    	
-			div(id:'chartdiv'){}
+	    	div(class:'panel panel-default') {
+	      		div(class:'panel-heading', 'Deprecation Chart')
+	      		div(class:'panel-body') {
+					div(id:'chartdiv'){}
+				}
+			}
 		}
-		
-		
 	}
 }

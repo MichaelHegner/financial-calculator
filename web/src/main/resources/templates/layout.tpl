@@ -9,6 +9,7 @@ html
 		script(src:'https://code.jquery.com/jquery-1.12.4.min.js'){}
 	    script(src:'https://www.amcharts.com/lib/3/amcharts.js'){}
 	    script(src:'https://www.amcharts.com/lib/3/serial.js'){}
+	    script(src:'https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js'){}
 	    script(src:'https://www.amcharts.com/lib/3/plugins/export/export.min.js'){}
 	    link(rel:'stylesheet', href:'https://www.amcharts.com/lib/3/plugins/export/export.css', type:'text/css', media:'all')
 	    script(src:'https://www.amcharts.com/lib/3/themes/none.js'){}
