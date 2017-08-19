@@ -19,17 +19,20 @@ class DeprecationApi {
 
 	@RequestMapping
 	def deprecationChart() {
-		Deprecation d = service.findAll().iterator().next()
-		def plan = service.calculatePlan(d)
-		
 		def returnList = []
-		plan.each{ value ->
-			def map = [:]
-			map.date = value.YEAR
-			map.value = value.DECLINING_BALANCE_END_OF_YEAR
-			returnList.add(map)
+		def deprecationIterator = service.findAll().iterator()
+
+		if(deprecationIterator.hasNext()) {
+			Deprecation d = deprecationIterator.next()
+			def plan = service.calculatePlan(d)
+			
+			plan.each{ value ->
+				def map = [:]
+				map.date = value.YEAR
+				map.value = value.DECLINING_BALANCE_END_OF_YEAR
+				returnList.add(map)
+			}
 		}
-		
 		returnList
 	}
 }
