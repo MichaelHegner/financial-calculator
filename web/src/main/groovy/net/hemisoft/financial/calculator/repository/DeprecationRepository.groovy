@@ -1,10 +1,9 @@
-package net.hemisoft.financial.calculator.service;
+package net.hemisoft.financial.calculator.repository;
 
 import net.hemisoft.financial.calculator.web.Deprecation
 
-interface DeprecationService {
+interface DeprecationRepository {
 	def findAll()
 	def findOne(id)
 	def save(Deprecation d)
-	def calculatePlan(Deprecation d)
 }

@@ -27,9 +27,6 @@ import net.hemisoft.financial.calculator.service.DeprecationService
 @Controller
 @RequestMapping("app")
 class DeprecationController {
-	final AtomicLong idGenerator = new AtomicLong(0)
-	final def db = [:]
-	
 	DeprecationService service;
 	
 	@Autowired
@@ -39,14 +36,14 @@ class DeprecationController {
 	
 	@GetMapping
 	public ModelAndView view() {
-		new ModelAndView("deprecation/list", "deprecations", db.values())
+		new ModelAndView("deprecation/list", "deprecations", service.findAll())
 	}
 
 	@GetMapping("/{id}")
 	public ModelAndView view(@PathVariable("id") Long id) {
-		def deprecation = db.get(id)
+		def deprecation = service.findOne(id)
 		ModelMap model = new ModelMap()
-		model.put("deprecations", db.values())
+		model.put("deprecations", service.findAll())
 		model.put("deprecation", deprecation)
 		model.put("plan", service.calculatePlan(deprecation))
 		new ModelAndView("deprecation/list", model)
@@ -81,14 +78,11 @@ class DeprecationController {
 
 	//
 		
-	private Deprecation createDeprecation(capital, interest) {
+	private def createDeprecation(capital, interest) {
 		new Deprecation(capital, interest)
 	}
 	
 	private Deprecation save(Deprecation deprecation) {
-		def id = idGenerator.incrementAndGet()
-		deprecation.id = id
-		db.put(id, deprecation)
-		deprecation
+		service.save(deprecation)
 	}
 }
