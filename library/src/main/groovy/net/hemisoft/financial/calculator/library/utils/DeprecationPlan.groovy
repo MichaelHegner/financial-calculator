@@ -12,23 +12,37 @@ class DeprecationPlan {
 	
 	static def generateLinearDeprecationPlanByInterest(double capital, double interest) {
 		int timeN = BasicCalculator.calculateInverse(interest)
-		def deprecation = DeprecationCalculator.calculateLinearDeprecationByInterest(capital, interest)
 		
 		def resultMap = []
-		for (int timeCounter = 0; timeCounter < timeN; timeCounter++) {
-			def balanceAtBegin = DeprecationCalculator.calculateLinearDecliningBalanceAtBeginOfYear(capital, timeCounter, timeN)
-			def balanceAtEnd = DeprecationCalculator.calculateLinearDecliningBalanceAtEndOfYear(capital, timeCounter, timeN)
-			
-			def deprecationRow = [:]
-			def currentYear = timeCounter + LocalDate.now().year
-			deprecationRow.YEAR = currentYear
-			deprecationRow.DECLINING_BALANCE_BEGIN_OF_YEAR = balanceAtBegin
-			deprecationRow.DEPRECATION =deprecation
-			deprecationRow.DECLINING_BALANCE_END_OF_YEAR = balanceAtEnd
-			
-			resultMap.add(deprecationRow)
+		resultMap.add(createInitialDeprecationYear(capital, timeN))
+		(0..<timeN).each {index ->
+			resultMap.add(createDeprecationYear(capital, interest, index, timeN))
 		}
 		
 		resultMap
 	}
+	
+	private static def createInitialDeprecationYear(capital, timeN) {
+		def deprecationRow = [:]
+		def currentYear = LocalDate.now().year - 1
+		deprecationRow.YEAR = currentYear
+		deprecationRow.DECLINING_BALANCE_BEGIN_OF_YEAR = 0
+		deprecationRow.DEPRECATION = 0
+		deprecationRow.DECLINING_BALANCE_END_OF_YEAR = DeprecationCalculator.calculateLinearDecliningBalanceAtEndOfYear(capital, -1, timeN)
+		deprecationRow
+	}
+	
+	private static def createDeprecationYear(capital, interest, index, timeN) {
+		def deprecationRow = [:]
+		def deprecation = DeprecationCalculator.calculateLinearDeprecationByInterest(capital, interest)
+		def balanceAtBegin = DeprecationCalculator.calculateLinearDecliningBalanceAtBeginOfYear(capital, index, timeN)
+		def balanceAtEnd = DeprecationCalculator.calculateLinearDecliningBalanceAtEndOfYear(capital, index, timeN)
+		def currentYear = index + LocalDate.now().year
+		deprecationRow.YEAR = currentYear
+		deprecationRow.DECLINING_BALANCE_BEGIN_OF_YEAR = balanceAtBegin
+		deprecationRow.DEPRECATION =deprecation
+		deprecationRow.DECLINING_BALANCE_END_OF_YEAR = balanceAtEnd
+		deprecationRow
+	}
+	
 }
