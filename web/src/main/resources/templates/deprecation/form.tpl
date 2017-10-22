@@ -13,17 +13,17 @@ layout 'layout.tpl', title: 'Deprecations : Create', content: contents {
     
     		div(class:fieldErrors?.capital ? 'form-group has-error' : 'form-group') {
         		label (for:'capital', 'Capital')
-        		input (name:'capital', type:'number', value:deprecation.capital?:'', class:'form-control')
+        		input (id:'inpCapital', name:'capital', type:'number', value:deprecation.capital?:'', class:'form-control')
     		}
     		
     		div(class:fieldErrors?.interest ? 'form-group has-error' : 'form-group') {
         		label (for:'interest', 'Interest')
-        		input (name:'interest', type:'number', value:deprecation.interest?:'', class:'form-control')     
+        		input (id:'inpInterest', name:'interest', type:'number', value:deprecation.interest?:'', class:'form-control')     
     		}
    		
     		div(class:fieldErrors?.year ? 'form-group has-error' : 'form-group') {
         		label (for:'year', 'Number of years')
-        		input (name:'year', type:'number', value:deprecation.year?:'', class:'form-control')     
+        		input (id:'inpYear', name:'year', type:'number', value:deprecation.year?:'', class:'form-control')     
     		}
 
     		div (class:'form-actions') {

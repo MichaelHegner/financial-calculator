@@ -28,7 +28,19 @@ public class DeprecationServiceImpl implements DeprecationService {
 		def url = "http://localhost:$apiPort/deprecation/capital/$capital/interest/$interest"
 		rest.getForObject(url, List.class)
 	}
-
+	
+	@Override
+	public def calculateYear(double interest) {
+		def url = "http://localhost:$apiPort/basic/interest2year/$interest"
+		rest.getForObject(url, Double.class)
+	}
+	
+	@Override
+	public Object calculateInterest(int year) {
+		def url = "http://localhost:$apiPort/basic/year2interest/$year"
+		rest.getForObject(url, Double.class)
+	}
+	
 	@Override
 	public def save(Deprecation d) {
 		repository.save(d);

@@ -1,8 +1,8 @@
 package net.hemisoft.financial.calculator.web
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 
 import net.hemisoft.financial.calculator.service.DeprecationService
@@ -12,12 +12,10 @@ import net.hemisoft.financial.calculator.service.DeprecationService
 class DeprecationApi {
 	DeprecationService service
 	
-	
-	@Autowired
 	DeprecationApi(DeprecationService service) {
 		this.service = service;
 	}
-
+	
 	@RequestMapping("/{id}")
 	def deprecationChart(@PathVariable long id) {
 		def returnList = []
@@ -34,5 +32,15 @@ class DeprecationApi {
 			}
 		}
 		returnList
+	}
+
+	@RequestMapping("/interestToYear/{interest}")
+	BigDecimal interestToYear(@PathVariable double interest) {
+		service.calculateYear(interest);
+	}
+	
+	@RequestMapping("/yearToInterest/{year}")
+	BigDecimal interestToYear(@PathVariable int year) {
+		service.calculateInterest(year);
 	}
 }
