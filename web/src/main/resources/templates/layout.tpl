@@ -5,14 +5,10 @@ html
 		title(title)
 	    link(rel:'stylesheet', href:'/css/deprecation.css')
 	    link(rel:'stylesheet', href:'/css/bootstrap.min.css')
+	    link(rel:'stylesheet', href:'//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css')
 	 
 		script(src:'https://code.jquery.com/jquery-1.12.4.min.js'){}
-	    script(src:'https://www.amcharts.com/lib/3/amcharts.js'){}
-	    script(src:'https://www.amcharts.com/lib/3/serial.js'){}
-	    script(src:'https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js'){}
-	    script(src:'https://www.amcharts.com/lib/3/plugins/export/export.min.js'){}
-	    link(rel:'stylesheet', href:'https://www.amcharts.com/lib/3/plugins/export/export.css', type:'text/css', media:'all')
-	    script(src:'https://www.amcharts.com/lib/3/themes/none.js'){}
+		script(src:'//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js'){}
 	    script(src:'/js/deprecation.js'){}
 	    
 	}
@@ -28,7 +24,7 @@ html
 		        	{
 		          		a(class:'navbar-brand', href:'http://beta.groovy-lang.org/docs/groovy-2.3.0/html/documentation/markup-template-engine.html') 
 		          		{
-		              			yield 'Groovy - Layout'
+		              		yield 'Groovy - Layout'
 		          		}
 		          	}
 		    	
