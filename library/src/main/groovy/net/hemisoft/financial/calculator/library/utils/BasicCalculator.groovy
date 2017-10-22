@@ -46,6 +46,16 @@ class BasicCalculator {
 	}
 	
 	/**
+	 * Calculates the interest of given year
+	 * @param year number of year till redemption
+	 * @return the calculated interest
+	 */
+	static double calculateYearToInterest(int year) {
+		if(year == 0) throw new IllegalArgumentException("Year must be not equal 0")
+		100 / year
+	}
+	
+	/**
 	 * Converts a value as quote, e.g. 20 (%) to 0.2
 	 * @param interest
 	 * @return
