@@ -1,0 +1,40 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+allprojects {
+	apply plugin: 'eclipse'
+	apply plugin: 'maven'
+	
+	group = 'net.hemisoft.ccm'
+	version = '0.1.0-SNAPSHOT'
+}
+
+subprojects {
+	apply plugin: 'groovy'
+	apply plugin: 'io.spring.dependency-management'
+	
+	sourceCompatibility = JavaVersion.VERSION_1_8
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	
+	dependencies {
+		compile('org.codehaus.groovy:groovy')
+	}
+	
+	dependencyManagement {
+		imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+	}
+}
