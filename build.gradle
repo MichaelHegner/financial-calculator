@@ -14,13 +14,15 @@ buildscript {
 allprojects {
 	apply plugin: 'eclipse'
 	apply plugin: 'maven'
+	apply plugin: 'maven-publish'
 	
-	group = 'net.hemisoft.ccm'
+	group = 'net.hemisoft.financial.calculator'
 	version = '0.1.0-SNAPSHOT'
 }
 
 subprojects {
 	apply plugin: 'groovy'
+	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 	
 	sourceCompatibility = JavaVersion.VERSION_1_8
@@ -31,10 +33,33 @@ subprojects {
 	}
 	
 	dependencies {
-		compile('org.codehaus.groovy:groovy')
+		compile				'org.codehaus.groovy:groovy'
+		testCompile			'org.springframework.boot:spring-boot-starter-test'
+		testCompile			'org.assertj:assertj-core'
 	}
 	
 	dependencyManagement {
 		imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+	}
+}
+
+project(rootProject.name + '-library') {
+	dependencies {
+		compile			 'org.springframework.boot:spring-boot-starter'
+	}
+}
+
+project(rootProject.name + '-api') {
+	dependencies {
+		compile project	(':' + rootProject.name + '-library')
+		
+		compile 		 'org.springframework.boot:spring-boot-starter-web'
+	}
+}
+
+project(rootProject.name + '-web') {
+	dependencies {
+		compile			 'org.springframework.boot:spring-boot-starter-web',
+						 'org.springframework.boot:spring-boot-starter-groovy-templates'
 	}
 }
