@@ -1,13 +1,13 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.3.RELEASE'
+		springBootVersion = '1.5.9.RELEASE'
 	}
 	repositories {
 		mavenLocal()
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 	}
 }
 
@@ -17,7 +17,8 @@ allprojects {
 	apply plugin: 'maven-publish'
 	
 	group = 'net.hemisoft.financial.calculator'
-	version = '0.1.0-SNAPSHOT'
+	version = "0.1.0-SNAPSHOT"
+	
 }
 
 subprojects {
@@ -37,23 +38,18 @@ subprojects {
 		testCompile			'org.springframework.boot:spring-boot-starter-test'
 		testCompile			'org.assertj:assertj-core'
 	}
-	
-	dependencyManagement {
-		imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
-	}
 }
 
-project(rootProject.name + '-library') {
+project(':' + rootProject.name + '-library') {
 	dependencies {
 		compile			 'org.springframework.boot:spring-boot-starter'
 	}
 }
 
-project(rootProject.name + '-api') {
+project(':' + rootProject.name + '-api') {
 	dependencies {
 		compile project	(':' + rootProject.name + '-library')
-		
-		compile 		 'org.springframework.boot:spring-boot-starter-web'
+		compile 		'org.springframework.boot:spring-boot-starter-web'
 	}
 }
 
