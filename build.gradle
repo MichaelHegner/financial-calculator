@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '2.1.2.RELEASE'
 	}
 	repositories {
 		mavenLocal()
@@ -43,6 +43,10 @@ subprojects {
 project(':' + rootProject.name + '-library') {
 	dependencies {
 		compile			 'org.springframework.boot:spring-boot-starter'
+	}
+	
+	jar {
+		enabled = true
 	}
 }
 
