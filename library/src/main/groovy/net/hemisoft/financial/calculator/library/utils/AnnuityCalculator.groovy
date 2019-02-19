@@ -1,6 +1,7 @@
 package net.hemisoft.financial.calculator.library.utils
 
 class AnnuityCalculator {
+	private def result
 	
 	/**
 	 * Calculates the redemption at the end of the given year
@@ -51,16 +52,19 @@ class AnnuityCalculator {
 	 * Calculates the rest loan at the end of the given year.
 	 * @param captial as e.g. loan
 	 * @param interest to pay for the loan (e.g. 4%).
-	 * @param redemption redemption reducing the loan (e.g. 4%).
+	 * @param redemption reducing the loan (e.g. 4%).
 	 * @param specialRedemption also reducing loan by free will (e.g. 4%).
 	 * @param endOfYear the end of the year to calculate the rest of the loan
 	 * @return the rest loan at the end of the given year.
 	 */
-	static double calculateRestLoanInYear(double captial, double interest, double redemption, double specialRedemption = 0, int endOfYear = 1) {
-		def redemptionOfFirstYear = calculateRedemptionAmountOfFirstYear(captial, interest, redemption)
-		def T1 = redemptionOfFirstYear + calculateSpecialRedemptionInYear(captial, specialRedemption)
+	static double calculateRestLoanInYear(double capital, double interest, double redemption, double specialRedemption = 0, int endOfYear = 1) {
+		def redemptionT1 = calculateRedemptionAmountOfFirstYear(capital, interest, redemption)
+		def specialRedemptionT1 = calculateSpecialRedemptionOfFirstYear(capital, specialRedemption)
+		def T1 = redemptionT1 + specialRedemptionT1
+		def q = 1 + BasicCalculator.interestToQuote(interest)
 		def qPowN = BasicCalculator.accumulationFactorByYearsAndInterest(endOfYear, interest)
-		Math.max(captial - ( T1 * (qPowN - 1) ) / ( interest ), 0)
+		def result = capital - ( T1 * (qPowN - 1) ) / ( q - 1 )
+		Math.max(result, 0)
 	}
 	
 	//
@@ -71,7 +75,7 @@ class AnnuityCalculator {
 	 * @param specialRedemption as special redemption in % (e.g. 4%)
 	 * @return the special redemption as amount in the year.
 	 */
-	static double calculateSpecialRedemptionInYear(double capital, double specialRedemption = 0) {
+	static double calculateSpecialRedemptionOfFirstYear(double capital, double specialRedemption = 0) {
 		BasicCalculator.calculateInterestOfAmount(capital, specialRedemption)
 	}
 	

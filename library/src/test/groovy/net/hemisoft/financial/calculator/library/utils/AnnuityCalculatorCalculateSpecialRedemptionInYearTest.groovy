@@ -60,9 +60,9 @@ class AnnuityCalculatorCalculateSpecialRedemptionInYearTest {
 	public void testInterestToQuote() {
 		def interest
 		if(null == specialRedemption)
-			interest = AnnuityCalculator.calculateSpecialRedemptionInYear(capital)
+			interest = AnnuityCalculator.calculateSpecialRedemptionOfFirstYear(capital)
 		else
-			interest = AnnuityCalculator.calculateSpecialRedemptionInYear(capital, specialRedemption)
+			interest = AnnuityCalculator.calculateSpecialRedemptionOfFirstYear(capital, specialRedemption)
 			
 		assertThat(interest).isCloseTo(expected, offset(0.001d))
 	}

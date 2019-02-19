@@ -23,7 +23,7 @@ class BasicCalculator {
 	 * @return returns the interest as absolute value.
 	 */
 	static double calculateInterestOfAmount(double capital, double interest) {
-		capital * BasicCalculator.interestToQuote(interest)
+		capital * interestToQuote(interest)
 	}
 
 	/**
