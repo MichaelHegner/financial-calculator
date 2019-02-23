@@ -58,12 +58,19 @@ class AnnuityCalculator {
 	 * @return the rest loan at the end of the given year.
 	 */
 	static double calculateRestLoanInYear(double capital, double interest, double redemption, double specialRedemption = 0, int endOfYear = 1) {
-		def redemptionT1 = calculateRedemptionAmountOfFirstYear(capital, interest, redemption)
-		def specialRedemptionT1 = calculateSpecialRedemptionOfFirstYear(capital, specialRedemption)
-		def T1 = redemptionT1 + specialRedemptionT1
-		def q = 1 + BasicCalculator.interestToQuote(interest)
-		def qPowN = BasicCalculator.accumulationFactorByYearsAndInterest(endOfYear, interest)
-		def result = capital - ( T1 * (qPowN - 1) ) / ( q - 1 )
+		def result
+		
+		if(capital < 0) {
+			result = 0
+		} else {
+			def redemptionT1 = calculateRedemptionAmountOfFirstYear(capital, interest, redemption)
+			def specialRedemptionT1 = calculateSpecialRedemptionOfFirstYear(capital, specialRedemption)
+			def T1 = redemptionT1 + specialRedemptionT1
+			def q = 1 + BasicCalculator.interestToQuote(interest)
+			def qPowN = BasicCalculator.accumulationFactorByYearsAndInterest(endOfYear, interest)
+			result = capital - ( T1 * (qPowN - 1) ) / ( q - 1 )
+		}
+		
 		Math.max(result, 0)
 	}
 	
