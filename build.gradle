@@ -12,7 +12,7 @@ buildscript {
 	}
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath 'net.researchgate:gradle-release:${gradleReleaseVersion}'
+        classpath "net.researchgate:gradle-release:${gradleReleaseVersion}"
 	}
 }
 
