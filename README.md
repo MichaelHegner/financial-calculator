@@ -13,4 +13,4 @@ gradle install
 
 ## Release
 https://github.com/researchgate/gradle-release
-gradle release
+gradle :release
