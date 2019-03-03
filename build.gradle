@@ -6,9 +6,13 @@ buildscript {
 	repositories {
 		mavenLocal()
 		mavenCentral()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
 	}
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'net.researchgate:gradle-release:2.6.0'
 	}
 }
 
@@ -16,6 +20,7 @@ allprojects {
 	apply plugin: 'eclipse'
 	apply plugin: 'maven'
 	apply plugin: 'maven-publish'
+    apply plugin: 'net.researchgate.release'
 	
 	group = 'net.hemisoft.financial.calculator'
 }

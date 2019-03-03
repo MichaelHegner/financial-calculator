@@ -10,3 +10,7 @@ In Project Root start gradle wrapper: gradle.bat wrapper
 https://docs.gradle.org/3.3/userguide/maven_plugin.html
 
 gradle install
+
+## Release
+https://github.com/researchgate/gradle-release
+gradle release
